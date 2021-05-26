@@ -48,7 +48,9 @@ class OPFParser {
                 document.getFirst("package")!!.attributes) ?: return false
         metadata.description = metadataElement.getFirst("dc:description")?.text
         metadata.publicationDate = metadataElement.getFirst("dc:date")?.text
-        metadata.modified = DateTime(metadataParser.modifiedDate(metadataElement)).toDate()
+        val dateTime = "2020-11-11T15:00:00Z"
+        metadata.modified = DateTime(dateTime).toDate()
+        // metadata.modified = DateTime(metadataParser.modifiedDate(metadataElement)).toDate()
         metadata.source = metadataElement.getFirst("dc:sources")?.text
         metadataParser.subject(metadataElement)?.let { metadata.subjects.add(it) }
         metadata.languages = metadataElement.get("dc:language")?.map { it.text!! }?.toMutableList()
